@@ -36,6 +36,10 @@ function copyToClipboard(text) {
     alert("Copied");
 }
 
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
 function mobile() {
     const content = document.querySelector('.bookContent').innerHTML
     // replace all <br> to \n
@@ -48,14 +52,18 @@ function mobile() {
 
     const title = document.querySelector('h3')
     const copyButton = document.createElement("button")
-    copyButton.style = 'padding: 5px;'
+    copyButton.style = 'padding: 5px; margin-left: auto; margin-right: auto; display: block; margin-bottom: 20px;'
     copyButton.innerText = 'Copy'
     copyButton.onclick = function () {
         const clean = cleanup(contentWithoutTags)
         copyToClipboard(clean)
         console.log(clean)
     }
-    title.appendChild(copyButton)
+
+    const navigationPanel = document.querySelector('.rp-switch')
+    navigationPanel.style = 'text-align: center; margin-bottom: 20px;'
+    insertAfter(copyButton, title)
+    insertAfter(navigationPanel, copyButton)
 
     // console.log(contentWithoutTags)
 
