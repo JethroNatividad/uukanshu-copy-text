@@ -9,6 +9,11 @@ if (url.indexOf('https://sj.uukanshu.com/') === 0) {
 
 
 function mobile() {
-    const content = document.querySelector('.bookContent')
-    console.log(content.textContent)
+    const content = document.querySelector('.bookContent').textContent
+    const title = document.querySelector('h3')
+    const copyButton = document.createElement("button")
+    copyButton.style = 'padding: 5px;'
+    copyButton.innerText = 'Copy'
+    title.appendChild(copyButton)
+    console.log(title.textContent)
 }
