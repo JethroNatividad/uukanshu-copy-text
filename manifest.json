@@ -1,0 +1,12 @@
+{
+	"name": "uukanshu copy text",
+	"description": "copy clean text from uukanshu",
+	"version": "1.0",
+	"manifest_version": 3,
+	"content_scripts": [
+		{
+			"matches": ["*://*.uukanshu.com/*"],
+			"js": ["main.js"]
+		}
+	]
+}
