@@ -50,12 +50,12 @@ function mobile() {
     copyButton.style = 'padding: 5px;'
     copyButton.innerText = 'Copy'
     copyButton.onclick = function () {
-        const clean = cleanup(content)
-        // copyToClipboard(clean)
+        const clean = cleanup(contentWithoutTags)
+        copyToClipboard(clean)
         console.log(clean)
     }
     title.appendChild(copyButton)
 
-    console.log(contentWithoutTags)
+    // console.log(contentWithoutTags)
 
 }
