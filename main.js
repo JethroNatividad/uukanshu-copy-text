@@ -21,7 +21,8 @@ function cleanup(text) {
     const addSpace = removedUseless3.replaceAll(',', ', ')
     const addSpace1 = addSpace.replaceAll(':', ': ')
     const replaceDot = addSpace1.replaceAll('。', '.')
-    return replaceDot
+    const replaceTripleDot = replaceDot.replaceAll('…', '.')
+    return replaceTripleDot
 }
 
 function copyToClipboard(text) {
