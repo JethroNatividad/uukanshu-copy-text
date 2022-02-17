@@ -31,10 +31,19 @@ function copyToClipboard(text) {
     elem.select();
     document.execCommand('copy');
     document.body.removeChild(elem);
+    // navigator.clipboard.writeText(text);
+    alert("Copied");
 }
 
 function mobile() {
-    const content = document.querySelector('.bookContent').textContent
+    const content = document.querySelector('.bookContent').innerHTML
+    // replace all <br> to \n
+    const contentWithBr = content.replaceAll('<br>', '\n')
+    // replace nbsp to space
+    const contentWithSpace = contentWithBr.replaceAll('&nbsp;', ' ')
+    // remove all tags
+    const contentWithoutTags = contentWithSpace.replace(/<\/?[^>]+(>|$)/g, "");
+
 
     const title = document.querySelector('h3')
     const copyButton = document.createElement("button")
@@ -42,8 +51,11 @@ function mobile() {
     copyButton.innerText = 'Copy'
     copyButton.onclick = function () {
         const clean = cleanup(content)
+        // copyToClipboard(clean)
         console.log(clean)
     }
     title.appendChild(copyButton)
+
+    console.log(contentWithoutTags)
 
 }
