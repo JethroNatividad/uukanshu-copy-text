@@ -1,7 +1,7 @@
 {
 	"name": "uukanshu copy text",
 	"description": "copy clean text from uukanshu",
-	"version": "1.0.3",
+	"version": "1.0.5",
 	"manifest_version": 3,
 	"content_scripts": [
 		{
