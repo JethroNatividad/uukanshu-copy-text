@@ -5,6 +5,7 @@ if (url.indexOf('https://sj.uukanshu.com/') === 0) {
     mobile()
 } else {
     console.log('not mobile')
+    pc()
 }
 
 function cleanup(text) {
@@ -67,4 +68,16 @@ function mobile() {
 
     // console.log(contentWithoutTags)
 
+}
+
+function pc(){
+    const content = document.querySelector('.uu_cont').innerHTML
+    // replace all <br> to \n
+    const contentWithBr = content.replaceAll('<br>', '\n')
+    // replace nbsp to space
+    const contentWithSpace = contentWithBr.replaceAll('&nbsp;', ' ')
+    // remove all tags
+    const contentWithoutTags = contentWithSpace.replace(/<\/?[^>]+(>|$)/g, "");
+    
+    
 }
