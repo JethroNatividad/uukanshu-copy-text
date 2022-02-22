@@ -79,5 +79,18 @@ function pc(){
     // remove all tags
     const contentWithoutTags = contentWithSpace.replace(/<\/?[^>]+(>|$)/g, "");
     
-    
+    const title = document.querySelector('.h1title')
+    const copyButton = document.createElement("button")
+    copyButton.style = 'padding: 5px; margin-left: auto; margin-right: auto; display: block; margin-bottom: 20px;'
+    copyButton.innerText = 'Copy'
+    copyButton.onclick = function () {
+        const clean = cleanup(contentWithoutTags)
+        copyToClipboard(clean)
+        console.log(clean)
+    }
+
+    const navigationPanel = document.querySelector('.fanye')
+    navigationPanel.style = 'text-align: center; margin-bottom: 20px;'
+    insertAfter(copyButton, title)
+    insertAfter(navigationPanel, copyButton)
 }
