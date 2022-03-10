@@ -12,7 +12,7 @@ function cleanup(text) {
 
     const textBasic = text.replace(
         /[\uff01-\uff5e]/g,
-        function (ch) { return String.fromCharCode(ch.charCodeAt(0) - 0xfee0); }
+        function(ch) { return String.fromCharCode(ch.charCodeAt(0) - 0xfee0) }
     )
 
     const removedUseless = textBasic.replaceAll('UU看书 www.uukanshu.com', '')
@@ -27,18 +27,18 @@ function cleanup(text) {
 }
 
 function copyToClipboard(text) {
-    const elem = document.createElement('textarea');
-    elem.value = text;
-    document.body.appendChild(elem);
-    elem.select();
-    document.execCommand('copy');
-    document.body.removeChild(elem);
+    const elem = document.createElement('textarea')
+    elem.value = text
+    document.body.appendChild(elem)
+    elem.select()
+    document.execCommand('copy')
+    document.body.removeChild(elem)
     // navigator.clipboard.writeText(text);
-    alert("Copied");
+    alert("Copied")
 }
 
 function insertAfter(newNode, referenceNode) {
-    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
 }
 
 function mobile() {
@@ -47,15 +47,18 @@ function mobile() {
     const contentWithBr = content.replaceAll('<br>', '\n')
     // replace nbsp to space
     const contentWithSpace = contentWithBr.replaceAll('&nbsp;', ' ')
+    // add space after p tags
+    const contentWithSpaceP = contentWithSpace.replaceAll('</p>', "</p>\n")
     // remove all tags
-    const contentWithoutTags = contentWithSpace.replace(/<\/?[^>]+(>|$)/g, "");
+    console.log(contentWithSpaceP)
+    const contentWithoutTags = contentWithSpaceP.replace(/<\/?[^>]+(>|$)/g, "")
 
 
     const title = document.querySelector('h3')
     const copyButton = document.createElement("button")
     copyButton.style = 'padding: 5px; margin-left: auto; margin-right: auto; display: block; margin-bottom: 20px;'
     copyButton.innerText = 'Copy'
-    copyButton.onclick = function () {
+    copyButton.onclick = function() {
         const clean = cleanup(contentWithoutTags)
         copyToClipboard(clean)
         console.log(clean)
@@ -70,20 +73,20 @@ function mobile() {
 
 }
 
-function pc(){
+function pc() {
     const content = document.querySelector('.uu_cont').innerHTML
     // replace all <br> to \n
     const contentWithBr = content.replaceAll('<br>', '\n')
     // replace nbsp to space
     const contentWithSpace = contentWithBr.replaceAll('&nbsp;', ' ')
     // remove all tags
-    const contentWithoutTags = contentWithSpace.replace(/<\/?[^>]+(>|$)/g, "");
-    
+    const contentWithoutTags = contentWithSpace.replace(/<\/?[^>]+(>|$)/g, "")
+
     const title = document.querySelector('.h1title')
     const copyButton = document.createElement("button")
     copyButton.style = 'padding: 5px; margin-left: auto; margin-right: auto; display: block; margin-bottom: 20px;'
     copyButton.innerText = 'Copy'
-    copyButton.onclick = function () {
+    copyButton.onclick = function() {
         const clean = cleanup(contentWithoutTags)
         copyToClipboard(clean)
         console.log(clean)
@@ -93,4 +96,5 @@ function pc(){
     navigationPanel.style = 'text-align: center; margin-bottom: 20px;'
     insertAfter(copyButton, title)
     insertAfter(navigationPanel, copyButton)
+
 }
