@@ -48,7 +48,7 @@ function mobile() {
     // replace nbsp to space
     const contentWithSpace = contentWithBr.replaceAll('&nbsp;', ' ')
     // add space after p tags
-    const contentWithSpaceP = contentWithSpace.replaceAll('</p>', "</p>\n")
+    const contentWithSpaceP = contentWithSpace.replaceAll('</p>', "</p>\n\n")
     // remove all tags
     console.log(contentWithSpaceP)
     const contentWithoutTags = contentWithSpaceP.replace(/<\/?[^>]+(>|$)/g, "")
@@ -79,8 +79,10 @@ function pc() {
     const contentWithBr = content.replaceAll('<br>', '\n')
     // replace nbsp to space
     const contentWithSpace = contentWithBr.replaceAll('&nbsp;', ' ')
+    // add space after p tags
+    const contentWithSpaceP = contentWithSpace.replaceAll('</p>', "</p>\n\n")
     // remove all tags
-    const contentWithoutTags = contentWithSpace.replace(/<\/?[^>]+(>|$)/g, "")
+    const contentWithoutTags = contentWithSpaceP.replace(/<\/?[^>]+(>|$)/g, "")
 
     const title = document.querySelector('.h1title')
     const copyButton = document.createElement("button")
